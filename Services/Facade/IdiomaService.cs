@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +9,7 @@ namespace Services.Facade
 {
     public static class IdiomaService
     {
-        public static string Traducir(string idioma, string texto)
-        {
-            return Logic.IdiomaLogic.Traducir(idioma, texto);
-        }
-        public static List<string> ObtenerIdiomas()
+        public static List<CultureInfo> ObtenerIdiomas()
         {
             return Logic.IdiomaLogic.ObtenerIdiomas();
         }

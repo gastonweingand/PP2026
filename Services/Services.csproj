@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="DataAccess\IdiomaDal.cs" />
     <Compile Include="DomainModel\Usuario.cs" />
+    <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
     <Compile Include="Facade\IdiomaService.cs" />
+    <Compile Include="Logic\CustomExceptions\PalabraNoEncontradaException.cs" />
     <Compile Include="Logic\IdiomaLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
