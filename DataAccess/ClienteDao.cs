@@ -18,11 +18,11 @@ namespace DataAccess
 
         public ClienteDao()
         {
-            clienteList.Add(new Cliente() { Codigo = 1, Nombre = "A" });
-            clienteList.Add(new Cliente() { Codigo = 2, Nombre = "B" });
-            clienteList.Add(new Cliente() { Codigo = 3, Nombre = "C" });
-            clienteList.Add(new Cliente() { Codigo = 4, Nombre = "D" });
-            clienteList.Add(new Cliente() { Codigo = 5, Nombre = "E" });
+            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "A" });
+            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "B" });
+            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "C" });
+            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "D" });
+            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "E" });
         }
 
         public void Modificar(Cliente cliente)
@@ -38,7 +38,7 @@ namespace DataAccess
             else throw new Exception();
         }
 
-        public Cliente ObtenerPorCodigo(int codigo) {
+        public Cliente ObtenerPorCodigo(Guid codigo) {
 
             foreach (Cliente item in clienteList)
             {

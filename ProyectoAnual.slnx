@@ -3,5 +3,6 @@
   <Project Path="DomainModel/DomainModel.csproj" Id="aae870d7-2431-48f9-8665-a37407f968b5" />
   <Project Path="Logic/Logic.csproj" Id="0948aa4f-0820-4719-9857-a7f2a8ddd881" />
   <Project Path="Services/Services.csproj" Id="ac040cce-a42a-40ae-81cc-b22b9d4fb66b" />
+  <Project Path="Test/Test.csproj" Id="a35b1b02-0ab0-4e64-8a60-9f2596b05c52" />
   <Project Path="WinApp/WinApp.csproj" Id="de1fb41b-a885-474b-9dcc-39286508e579" />
 </Solution>
