@@ -14,7 +14,7 @@ namespace DomainModel
         /// <summary>
         /// 
         /// </summary>
-        public Guid Codigo { get; set; } 
+        public Guid IdCliente { get; set; } 
 
         public String Nombre { get; set; }
 

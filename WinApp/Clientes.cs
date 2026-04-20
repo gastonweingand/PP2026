@@ -68,7 +68,7 @@ namespace WinApp
             try
             {
                 Cliente cliente = new Cliente();
-                cliente.Codigo = Guid.NewGuid();
+                cliente.IdCliente = Guid.NewGuid();
                 cliente.CUIT = "27000";
                 cliente.FechaNacimiento = DateTime.Now.AddYears(-15);
                 cliente.Nombre = "Fulano";

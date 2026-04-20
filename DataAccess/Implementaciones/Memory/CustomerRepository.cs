@@ -14,8 +14,8 @@ namespace DataAccess.Implementaciones.Memory
 
         public CustomerRepository()
         {
-            _clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "Pedro"  });
-            _clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "Fernando" });
+            _clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "Pedro"  });
+            _clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "Fernando" });
         }
 
         public void Add(Cliente entity)
@@ -26,7 +26,7 @@ namespace DataAccess.Implementaciones.Memory
         public void Delete(Guid id)
         {
             //Después vemos el método tradicional estructurado
-            _clienteList.RemoveAll(o => o.Codigo == id);
+            _clienteList.RemoveAll(o => o.IdCliente == id);
         }
 
         public List<Cliente> GetAll()
@@ -41,12 +41,12 @@ namespace DataAccess.Implementaciones.Memory
 
         public Cliente GetById(Guid id)
         {
-            return _clienteList.FirstOrDefault(o => o.Codigo == id);
+            return _clienteList.FirstOrDefault(o => o.IdCliente == id);
         }
 
         public void Update(Cliente entity)
         {
-            Cliente clienteEncontrado = GetById(entity.Codigo);
+            Cliente clienteEncontrado = GetById(entity.IdCliente);
 
             if (clienteEncontrado != null)
             {

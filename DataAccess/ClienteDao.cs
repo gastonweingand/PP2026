@@ -18,16 +18,16 @@ namespace DataAccess
 
         public ClienteDao()
         {
-            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "A" });
-            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "B" });
-            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "C" });
-            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "D" });
-            clienteList.Add(new Cliente() { Codigo = Guid.NewGuid(), Nombre = "E" });
+            clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "A" });
+            clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "B" });
+            clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "C" });
+            clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "D" });
+            clienteList.Add(new Cliente() { IdCliente = Guid.NewGuid(), Nombre = "E" });
         }
 
         public void Modificar(Cliente cliente)
         {
-            Cliente clienteAModificar = ObtenerPorCodigo(cliente.Codigo);
+            Cliente clienteAModificar = ObtenerPorCodigo(cliente.IdCliente);
 
             if (clienteAModificar != null)
             {
@@ -42,7 +42,7 @@ namespace DataAccess
 
             foreach (Cliente item in clienteList)
             {
-                if (item.Codigo == codigo)
+                if (item.IdCliente == codigo)
                     return item;
             }
             //Si estoy acá significa que no existe un cliente con ese código...
@@ -51,7 +51,7 @@ namespace DataAccess
 
         public void Eliminar(Cliente cliente)
         {
-            Cliente clienteAEliminar = ObtenerPorCodigo(cliente.Codigo);
+            Cliente clienteAEliminar = ObtenerPorCodigo(cliente.IdCliente);
 
             if (clienteAEliminar != null)
             {

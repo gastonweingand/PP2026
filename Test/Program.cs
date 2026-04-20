@@ -19,7 +19,7 @@ namespace Test
             Recorrer(clientes);
 
             Cliente clienteNuevo = new Cliente();
-            clienteNuevo.Codigo = Guid.NewGuid();
+            clienteNuevo.IdCliente = Guid.NewGuid();
             clienteNuevo.Nombre = "Jorgito";
 
             //ADD
@@ -34,7 +34,7 @@ namespace Test
             Recorrer(clientes);
 
             //DELETE
-            FactoryDataAccess.CustomerRepository.Delete(clienteNuevo.Codigo);
+            FactoryDataAccess.CustomerRepository.Delete(clienteNuevo.IdCliente);
 
             Recorrer(clientes);
         }
@@ -43,7 +43,7 @@ namespace Test
         {
             foreach (Cliente cliente in clientes)
             {
-                Console.WriteLine($"{cliente.Codigo} : {cliente.Nombre}");
+                Console.WriteLine($"{cliente.IdCliente} : {cliente.Nombre}");
             }
         }
     }
