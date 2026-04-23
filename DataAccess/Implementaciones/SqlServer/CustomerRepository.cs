@@ -1,8 +1,11 @@
-﻿using DataAccess.Interfaces;
+﻿using DataAccess.Implementaciones.SqlServer.Adaptadores;
+using DataAccess.Interfaces;
 using DataAccess.Tools;
 using DomainModel;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,30 +13,35 @@ using System.Threading.Tasks;
 namespace DataAccess.Implementaciones.SqlServer
 {
 
-	public sealed class CustomerRepository : ICustomerRepository
-	{
+    public sealed class CustomerRepository : ICustomerRepository
+    {
         #region singleton
         private readonly static CustomerRepository _instance = new CustomerRepository();
 
-		public static CustomerRepository Current
-		{
-			get
-			{
-				return _instance;
-			}
-		}
+        public static CustomerRepository Current
+        {
+            get
+            {
+                return _instance;
+            }
+        }
 
-		private CustomerRepository()
-		{
-			//Implent here the initialization of your singleton
-		}
+        private CustomerRepository()
+        {
+            //Implent here the initialization of your singleton
+        }
         #endregion
 
 
         #region Statements
         private string InsertStatement
         {
-            get => "INSERT INTO [dbo].[Clientes] (Nombre, CUIT, FechaNacimiento) VALUES (@Nombre, @CUIT, @FechaNacimiento)";
+            //get => "INSERT INTO [dbo].[Clientes] (Nombre, CUIT, FechaNacimiento) VALUES (@Nombre, @CUIT, @FechaNacimiento)";
+            get => "DECLARE @NewID TABLE (IdCliente uniqueidentifier); " +
+                      "INSERT INTO [dbo].[Clientes] (Nombre, CUIT, FechaNacimiento) " +
+                      "OUTPUT INSERTED.IdCliente INTO @NewID " +
+                      "VALUES (@Nombre, @CUIT, @FechaNacimiento);" +
+                      "SELECT IdCliente FROM @NewID;";
         }
 
         private string UpdateStatement
@@ -65,7 +73,26 @@ namespace DataAccess.Implementaciones.SqlServer
 
         public void Add(Cliente entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //Generamos el Id del cliente, aunque no es necesario porque lo genera la base de datos, pero lo hacemos para tenerlo disponible en el objeto antes de insertarlo en la base de datos
+                //Desde programación generamos el GUID (Otra opción)
+
+                //entity.IdCliente = Guid.NewGuid();
+
+                object returnValue = SqlHelper.ExecuteScalar(InsertStatement, CommandType.Text,
+                                                        new SqlParameter[] {
+                                                            new SqlParameter("@Nombre", entity.Nombre),
+                                                            new SqlParameter("@CUIT", entity.CUIT),
+                                                            new SqlParameter("@FechaNacimiento", entity.FechaNacimiento)
+                                                        });
+
+                entity.IdCliente = Guid.Parse(returnValue.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Update(Cliente entity)
@@ -75,38 +102,79 @@ namespace DataAccess.Implementaciones.SqlServer
 
         public void Delete(Guid id)
         {
-            throw new NotImplementedException();
+            //En realidad, los delete no deberían exitir en las bases de datos salvo movimientos
+            //de datos a bases históricas, pero para el ejemplo lo implementamos así
+
+            int filasAfectadas = SqlHelper.ExecuteNonQuery(DeleteStatement, CommandType.Text,
+                new SqlParameter[] {
+                    new SqlParameter("@IdCliente", id)
+                });
+
+            //O bien, retornamos por método este int o hacemos alguna validación
+
+            if (filasAfectadas > 1 || filasAfectadas == 0)
+            {
+                //Algo falló, porque se afectó más de un registro o no se afectó ningún registro, lo que indicaría que el IdCliente no existe en la base de datos
+                throw new Exception("Error al eliminar el cliente, se afectó un número de registros inesperado: " + filasAfectadas);
+            }
         }
 
         public Cliente GetById(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                //Objeto de retorno
+                Cliente cliente = default;
+
+                using (var dataReader = SqlHelper.ExecuteReader(SelectOneStatement,
+                    CommandType.Text,
+                    new SqlParameter[] {
+                        new SqlParameter("@IdCliente", id)
+                    }))
+                {
+                    if (dataReader.Read())
+                    {
+                        object[] datos = new object[dataReader.FieldCount];
+                        dataReader.GetValues(datos);
+
+                        cliente = ClienteAdaptador.Current.Fill(datos);
+                    }
+                }
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Cliente> GetAll()
         {
-            //Objeto de retorno
-            List<Cliente> clientes = new List<Cliente>();
-
-            using(var dataReader = SqlHelper.ExecuteReader(SelectAllStatement,
-                System.Data.CommandType.Text, new System.Data.SqlClient.SqlParameter[] {}))
+            try
             {
-                while (dataReader.Read())
-                {
-                    //El jueves vamos a ver el patrón adapter -> mapper
+                //Objeto de retorno
+                List<Cliente> clientes = new List<Cliente>();
 
-                    Cliente cliente = new Cliente
+                using (var dataReader = SqlHelper.ExecuteReader(SelectAllStatement,
+                    CommandType.Text, new SqlParameter[] { }))
+                {
+                    while (dataReader.Read())
                     {
-                        IdCliente = dataReader.GetGuid(0),
-                        Nombre = dataReader.GetString(1),
-                        CUIT = dataReader.GetString(2),
-                        FechaNacimiento = dataReader.GetDateTime(3)
-                    };
-                    clientes.Add(cliente);
+                        //El jueves vamos a ver el patrón adapter -> mapper
+                        object[] datos = new object[dataReader.FieldCount];
+                        dataReader.GetValues(datos);
+
+                        //Cliente clienteAdaptador = ClienteAdaptador.Current.Fill(datos);
+
+                        clientes.Add(ClienteAdaptador.Current.Fill(datos));
+                    }
                 }
+                return clientes;
             }
-            return clientes;
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
-
 }

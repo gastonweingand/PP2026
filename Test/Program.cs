@@ -19,12 +19,14 @@ namespace Test
             Recorrer(clientes);
 
             Cliente clienteNuevo = new Cliente();
-            clienteNuevo.IdCliente = Guid.NewGuid();
             clienteNuevo.Nombre = "Jorgito";
+            clienteNuevo.FechaNacimiento = DateTime.Now.AddYears(-20);
+            clienteNuevo.CUIT = "20123456789";
 
             //ADD
-            FactoryDataAccess.CustomerRepository.Add(clienteNuevo);
+            //FactoryDataAccess.CustomerRepository.Add(clienteNuevo);
 
+            clientes = FactoryDataAccess.CustomerRepository.GetAll();
             Recorrer(clientes);
 
             //UPDATE

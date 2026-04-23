@@ -45,7 +45,9 @@
     <Compile Include="ClienteDao.cs" />
     <Compile Include="Factory\FactoryDataAccess.cs" />
     <Compile Include="Implementaciones\Memory\CustomerRepository.cs" />
+    <Compile Include="Implementaciones\SqlServer\Adaptadores\ClienteAdaptador.cs" />
     <Compile Include="Implementaciones\SqlServer\CustomerRepository.cs" />
+    <Compile Include="Interfaces\IAdaptador.cs" />
     <Compile Include="Interfaces\IAddRepository.cs" />
     <Compile Include="Interfaces\ICrudRepository.cs" />
     <Compile Include="Interfaces\ICustomerRepository.cs" />
