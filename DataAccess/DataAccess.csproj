@@ -69,5 +69,8 @@
     <None Include="Tools\singleton.snippet" />
     <None Include="Tools\statements.snippet" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Tools\script.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
