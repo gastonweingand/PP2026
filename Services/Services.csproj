@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\IdiomaDal.cs" />
+    <Compile Include="DomainModel\Composite\Component.cs" />
+    <Compile Include="DomainModel\Composite\Familia.cs" />
+    <Compile Include="DomainModel\Composite\Patente.cs" />
     <Compile Include="DomainModel\Usuario.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
     <Compile Include="Facade\IdiomaService.cs" />
