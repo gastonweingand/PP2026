@@ -18,7 +18,7 @@ namespace Services.Dal.Implementations
             SqlHelper.ExecuteNonQuery(commandText, CommandType.Text,
                 new SqlParameter("@IdPatente", entity.Id),
                 new SqlParameter("@DataKey", entity.DataKey),
-                new SqlParameter("@TipoAcceso", entity.TipoAcceso.ToString()));
+                new SqlParameter("@TipoAcceso", (int)entity.TipoAcceso));
         }
 
         public void Delete(Guid id)
