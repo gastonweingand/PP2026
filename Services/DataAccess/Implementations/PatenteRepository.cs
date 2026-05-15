@@ -1,4 +1,3 @@
-﻿
 using Services.Dal.Implementations.Adapters;
 using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
@@ -7,9 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Dal.Implementations
 {
@@ -17,7 +13,12 @@ namespace Services.Dal.Implementations
     {
         public void Add(Patente entity)
         {
-            throw new NotImplementedException();
+            entity.Id = Guid.NewGuid();
+            string commandText = "INSERT INTO Patente (IdPatente, DataKey, TipoAcceso) VALUES (@IdPatente, @DataKey, @TipoAcceso)";
+            SqlHelper.ExecuteNonQuery(commandText, CommandType.Text,
+                new SqlParameter("@IdPatente", entity.Id),
+                new SqlParameter("@DataKey", entity.DataKey),
+                new SqlParameter("@TipoAcceso", entity.TipoAcceso.ToString()));
         }
 
         public void Delete(Guid id)
@@ -46,7 +47,7 @@ namespace Services.Dal.Implementations
                 }
                 else
                 {
-                    return null; // or throw an exception if not found
+                    return null;
                 }
             }
         }

@@ -1,6 +1,7 @@
-﻿using DataAccess.Factory;
+using DataAccess.Factory;
 using DomainModel;
 using Services.DataAccess.DomainModel.Composite;
+using Services.Facade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,21 +16,60 @@ namespace Test
         static void Main(string[] args)
         {
             //Demo composite hacia la base de datos
+            Console.WriteLine("=== DEMO COMPOSITE CON BASE DE DATOS ===\n");
 
+            // 1. Crear patentes (hojas del árbol de permisos)
+            Patente patenteVentas = new Patente { DataKey = "frmVentas", TipoAcceso = TipoAcceso.Pantalla };
+            Patente patenteVisVentas = new Patente { DataKey = "frmVisualizacionVentas", TipoAcceso = TipoAcceso.Pantalla };
+            Patente patentePerfil = new Patente { DataKey = "frmPerfil", TipoAcceso = TipoAcceso.Pantalla };
 
+            PatenteService.Add(patenteVentas);
+            PatenteService.Add(patenteVisVentas);
+            PatenteService.Add(patentePerfil);
+            Console.WriteLine($"Patentes creadas: {patenteVentas.DataKey}, {patenteVisVentas.DataKey}, {patentePerfil.DataKey}");
 
+            // 2. Crear familias (nodos del árbol)
+            Familia familiaVentasBD = new Familia { Nombre = "Familia de ventas" };
+            Familia familiaAdminBD = new Familia { Nombre = "Administrador" };
 
+            FamiliaService.Add(familiaVentasBD);
+            FamiliaService.Add(familiaAdminBD);
+            Console.WriteLine($"Familias creadas: {familiaVentasBD.Nombre}, {familiaAdminBD.Nombre}");
 
+            // 3. Asignar patentes a la familia de ventas
+            FamiliaService.AgregarPatente(patenteVentas, familiaVentasBD);
+            FamiliaService.AgregarPatente(patenteVisVentas, familiaVentasBD);
+            Console.WriteLine($"Patentes asignadas a '{familiaVentasBD.Nombre}'");
 
+            // 4. Anidar la familia de ventas dentro de administrador
+            FamiliaService.AgregarFamilia(familiaVentasBD, familiaAdminBD);
+            Console.WriteLine($"'{familiaVentasBD.Nombre}' asignada como hija de '{familiaAdminBD.Nombre}'");
 
+            // 5. Crear usuario
+            Usuario usuarioBD = new Usuario("jorgito_bd", "jorgito@empresa.com", "Pass1234");
+            LoginService.RegistrarUsuario(usuarioBD);
+            Console.WriteLine($"Usuario creado: {usuarioBD.Nombre} (Id: {usuarioBD.IdUsuario})");
 
+            // 6. Asignar privilegios al usuario
+            UsuarioService.AgregarFamilia(familiaAdminBD, usuarioBD);   // accede a todo el árbol de admin
+            UsuarioService.AgregarPatente(patentePerfil, usuarioBD);     // patente directa (sin familia)
+            Console.WriteLine("Privilegios asignados al usuario");
 
+            // 7. Recuperar el usuario e hidratar el composite completo desde la BD
+            Console.WriteLine("\n--- Recuperando usuario desde la BD ---");
+            Usuario usuarioRecuperado = LoginService.ValidarCredenciales("jorgito_bd", "Pass1234");
 
+            Console.WriteLine($"Usuario: {usuarioRecuperado.Nombre} | Email: {usuarioRecuperado.Email}");
 
+            Console.WriteLine("\nTodas las patentes accesibles:");
+            foreach (Patente p in usuarioRecuperado.Patentes)
+                Console.WriteLine($"  - {p.DataKey} ({p.TipoAcceso})");
 
+            Console.WriteLine("\nTodas las familias accesibles:");
+            foreach (Familia f in usuarioRecuperado.Familias)
+                Console.WriteLine($"  - {f.Nombre}");
 
-
-
+            Console.WriteLine("\n=== FIN DEMO BD ===\n");
 
 
 
@@ -75,7 +115,6 @@ namespace Test
             //Si el modelo que van a gestionar desde usuario funciona
             //Deberíamos ver en pantalla que al recorrer los privilegios
             //Este usuario debería mostrar por pantalla los métodos que el profe dejó de tarea
-            //usuario.TodasFamilias();
             List<Patente> patentes = usuario.Patentes;
 
             //Recorriendo todos los accesos a los que tiene permitido ingresar el usuario

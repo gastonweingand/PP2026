@@ -1,4 +1,4 @@
-﻿using Services.Dal.Implementations.Adapters;
+using Services.Dal.Implementations.Adapters;
 using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
@@ -6,9 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Dal.Implementations
 {
@@ -16,7 +13,11 @@ namespace Services.Dal.Implementations
     {
         public void Add(Familia entity)
         {
-            throw new NotImplementedException();
+            entity.Id = Guid.NewGuid();
+            string commandText = "INSERT INTO Familia (IdFamilia, Nombre) VALUES (@IdFamilia, @Nombre)";
+            SqlHelper.ExecuteNonQuery(commandText, CommandType.Text,
+                new SqlParameter("@IdFamilia", entity.Id),
+                new SqlParameter("@Nombre", entity.Nombre));
         }
 
         public void Delete(Guid id)
@@ -44,7 +45,7 @@ namespace Services.Dal.Implementations
                 }
                 else
                 {
-                    return null; // or throw an exception if not found
+                    return null;
                 }
             }
         }
