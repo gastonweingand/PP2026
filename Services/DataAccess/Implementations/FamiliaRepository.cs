@@ -1,9 +1,7 @@
-﻿using Composite;
-using Dal.Tools;
-using Services.Dal.Implementations.Adapters;
-using Services.DataAccess.Implementations;
+﻿using Services.Dal.Implementations.Adapters;
+using Services.DataAccess.DomainModel.Composite;
+using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -16,6 +14,21 @@ namespace Services.Dal.Implementations
 {
     internal class FamiliaRepository : IFamiliaRepository
     {
+        public void Add(Familia entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Familia> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Familia GetById(Guid id)
         {
             string SelectByIdStatement = "SELECT IdFamilia, Nombre FROM [dbo].[Familia] WHERE IdFamilia = @IdFamilia";
@@ -34,6 +47,11 @@ namespace Services.Dal.Implementations
                     return null; // or throw an exception if not found
                 }
             }
+        }
+
+        public void Update(Familia entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

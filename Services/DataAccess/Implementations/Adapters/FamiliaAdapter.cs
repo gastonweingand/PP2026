@@ -1,6 +1,6 @@
-﻿using Composite;
+﻿
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +31,11 @@ namespace Services.Dal.Implementations.Adapters
         public Familia Get(object[] values)
         {
             Familia familia = new Familia();
-            familia.IdFamilia = Guid.Parse(values[0].ToString());
+            familia.Id = Guid.Parse(values[0].ToString());
             familia.Nombre = values[1].ToString();
 
-            //Una familia puede tener familias hijas
             familia.AddRange(new FamiliaFamiliaRepository().GetByObject(familia));
 
-            //Una familia puede tener patentes hijas
             familia.AddRange(new FamiliaPatenteRepository().GetByObject(familia));
 
             return familia;

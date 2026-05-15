@@ -1,8 +1,8 @@
-﻿using Composite;
+﻿
 using Services.Dal.Implementations.Adapters;
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,6 +15,21 @@ namespace Services.Dal.Implementations
 {
     internal class PatenteRepository : IPatenteRepository
     {
+        public void Add(Patente entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Patente> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
         public Patente GetById(Guid id)
         {
             string SelectByIdStatement = "SELECT IdPatente, DataKey, TipoAcceso FROM [dbo].[Patente] WHERE IdPatente = @IdPatente";
@@ -34,6 +49,11 @@ namespace Services.Dal.Implementations
                     return null; // or throw an exception if not found
                 }
             }
+        }
+
+        public void Update(Patente entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

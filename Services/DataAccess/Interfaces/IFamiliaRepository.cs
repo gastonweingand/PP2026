@@ -1,11 +1,11 @@
-﻿using Composite;
-using Services.DomainModel;
+﻿using DataAccess.Interfaces;
+using Services.DataAccess.DomainModel.Composite;
 using System;
 
-namespace Services.DataAccess.Implementations
+namespace Services.DataAccess.Interfaces
 {
-    internal interface IFamiliaRepository
+    internal interface IFamiliaRepository : IGenericRepository<Familia>
     {
-        Familia GetById(Guid id);
+
     }
 }

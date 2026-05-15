@@ -55,6 +55,7 @@
     <Compile Include="DataAccess\Implementations\UsuarioRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IAdapter.cs" />
     <Compile Include="DataAccess\Interfaces\IFamiliaRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IGenericRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IJoinRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IPatenteRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IUsuarioRepository.cs" />
@@ -62,11 +63,13 @@
     <Compile Include="DomainModel\Composite\Component.cs" />
     <Compile Include="DomainModel\Composite\Familia.cs" />
     <Compile Include="DomainModel\Composite\Patente.cs" />
-    <Compile Include="DomainModel\Usuario.cs" />
+    <Compile Include="DomainModel\Composite\Usuario.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
     <Compile Include="Facade\IdiomaService.cs" />
+    <Compile Include="Facade\LoginService.cs" />
     <Compile Include="Logic\CustomExceptions\PalabraNoEncontradaException.cs" />
     <Compile Include="Logic\IdiomaLogic.cs" />
+    <Compile Include="Logic\UsuarioLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

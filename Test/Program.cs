@@ -1,7 +1,6 @@
-﻿using Composite;
-using DataAccess.Factory;
+﻿using DataAccess.Factory;
 using DomainModel;
-using Services.DomainModel;
+using Services.DataAccess.DomainModel.Composite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +14,26 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            //Demo composite hacia la base de datos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             ServicioIdioma servicioIdioma1 = ServicioIdioma.GetInstance();
             servicioIdioma1.BasePath = "C:\\Program Files\\Test";
 
@@ -30,10 +49,6 @@ namespace Test
             Console.WriteLine(servicioIdioma1 == servicioIdioma2);
 
             ServicioBitacora.BasePath = servicioIdioma1.BasePath;
-
-
-
-
 
             Patente pantallaGestionVentas = new Patente();
             pantallaGestionVentas.Nombre = "frmVentas";
@@ -61,7 +76,7 @@ namespace Test
             //Deberíamos ver en pantalla que al recorrer los privilegios
             //Este usuario debería mostrar por pantalla los métodos que el profe dejó de tarea
             //usuario.TodasFamilias();
-            List<Patente> patentes = usuario.TodasPatentes();
+            List<Patente> patentes = usuario.Patentes;
 
             //Recorriendo todos los accesos a los que tiene permitido ingresar el usuario
             foreach (Patente patente in patentes)
@@ -69,7 +84,7 @@ namespace Test
                 Console.WriteLine(patente.Nombre);
             }
 
-            List<Familia> familias = usuario.TodasFamilias();
+            List<Familia> familias = usuario.Familias;
 
             //Recorriendo todos los accesos a los que tiene permitido ingresar el usuario
             foreach (Familia familia in familias)

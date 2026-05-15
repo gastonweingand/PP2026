@@ -1,7 +1,6 @@
 ﻿
-using Composite;
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,14 +39,14 @@ namespace Services.Dal.Implementations.Adapters
         /// <returns></returns>
         public Usuario Get(object[] values)
         {
-            Usuario usuario = new Usuario();
-            //(
-            //    Guid.Parse(values[0].ToString()),
-            //    values[1].ToString(),
-            //    values[2].ToString(),
-            //    values[3].ToString(),
-            //    Convert.ToBoolean(values[4].ToString())
-            //);
+            Usuario usuario = new Usuario
+            (
+                Guid.Parse(values[0].ToString()),
+                values[1].ToString(),
+                values[2].ToString(),
+                values[3].ToString(),
+                Convert.ToBoolean(values[4].ToString())
+            );
 
             usuario.Privilegios = new List<Component>();
 
