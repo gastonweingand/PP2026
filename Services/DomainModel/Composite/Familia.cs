@@ -47,10 +47,16 @@ namespace Composite
         /// </summary>
         public Familia(Component component)
         {
-            if(component == null)   
+            if (component == null)
                 throw new ArgumentException("No se puede crear una familia sin un componente asociado");
 
+            IdFamilia = Guid.NewGuid();
             components.Add(component);
+        }
+
+        public Familia()
+        {
+
         }
 
         /// 
@@ -58,6 +64,11 @@ namespace Composite
         public override void Add(Component component)
         {
             components.Add(component);
+        }
+
+        public void AddRange(IEnumerable<Component> components)
+        {
+            this.components.AddRange(components);
         }
 
         /// 
@@ -70,7 +81,18 @@ namespace Composite
                 throw new InvalidOperationException("No se puede eliminar el último componente de una familia.");
             }
 
-            components.RemoveAll(o => o.IdComponente == component.IdComponente);
+            if (component is Familia)
+            {
+                Familia familia = component as Familia;
+                components.RemoveAll(o => familia.IdComponente == familia.IdComponente);
+            }
+
+            if (component is Patente)
+            {
+                Patente patente = component as Patente;
+                components.RemoveAll(o => patente.IdPatente == patente.IdPatente);
+            }
+
         }
 
         public List<Component> GetComponentes()

@@ -9,46 +9,69 @@ namespace Services.DomainModel
 {
     public class Usuario
     {
+        public Guid IdUsuario { get; set; }
         public string IdiomaPredeterminado { get; set; }
 
         public string Nombre { get; set; }
 
         //Agregar los dato fundamentales para cualquier usuario: nombre, contraseña, email, etc.
 
-        public List<Component> Privilegios { get; set; }
+        public List<Component> Privilegios { get; set; } = new List<Component>();
 
         public List<Patente> TodasPatentes()
         {
             List<Patente> patentes = new List<Patente>();
 
-            foreach (var componente in Privilegios)
+            RecorrerComponentesParaPatentes(Privilegios, patentes);
+
+            return patentes;
+        }
+
+        private void RecorrerComponentesParaPatentes(List<Component> componentes, List<Patente> patentes)
+        {
+            foreach (var componente in componentes)
             {
                 if (componente is Patente)
                 {
-                    patentes.Add((Patente)componente);
+                    Patente patenteObj = (Patente)componente;
+
+                    // Si la patente no está en la lista, la agregamos
+                    // Comprobamos para lograr una funcionalidad similar a distinct, pero sin usar LINQ, para evitar problemas de rendimiento al cargar todas las patentes
+
+                    if (!patentes.Exists(o => o.IdPatente == patenteObj.IdPatente))
+                        patentes.Add(componente as Patente);
                 }
                 else if (componente is Familia)
                 {
-                    //patentes.AddRange(((Familia)componente).GetPatentes());
-
-                    //Pensar mecanismos recursivos..
+                    RecorrerComponentesParaPatentes(((Familia)componente).GetComponentes(), patentes);
                 }
             }
-            return patentes;
         }
 
         public List<Familia> TodasFamilias()
         {
             List<Familia> familias = new List<Familia>();
-            foreach (var componente in Privilegios)
+
+            RecorrerComponentesParaFamilias(Privilegios, familias);
+
+            return familias;
+        }
+
+        private void RecorrerComponentesParaFamilias(List<Component> componentes, List<Familia> familias)
+        {
+            foreach (var componente in componentes)
             {
                 if (componente is Familia)
                 {
-                    //No estaría del todo bien, falta recursividad, pero por ahora se deja así.
-                    familias.Add((Familia)componente);
+                    Familia familiaObj = (Familia)componente;
+
+                    // Comprobamos para lograr una funcionalidad similar a distinct, pero sin usar LINQ, para evitar problemas de rendimiento al cargar todas las patentes y familias de un usuario
+                    if (!familias.Exists(o => o.IdFamilia == familiaObj.IdFamilia))
+                        familias.Add(componente as Familia);
+
+                    RecorrerComponentesParaFamilias(((Familia)componente).GetComponentes(), familias);
                 }
             }
-            return familias;
         }
     }
 }

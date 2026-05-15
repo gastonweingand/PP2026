@@ -47,7 +47,7 @@ namespace Composite
         //etc...
         public Patente()
         {
-
+            IdPatente = Guid.NewGuid();
         }
 
 

@@ -43,6 +43,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\IdiomaDal.cs" />
+    <Compile Include="DataAccess\Implementations\Adapters\FamiliaAdapter.cs" />
+    <Compile Include="DataAccess\Implementations\Adapters\PatenteAdapter.cs" />
+    <Compile Include="DataAccess\Implementations\Adapters\UsuarioAdapter.cs" />
+    <Compile Include="DataAccess\Implementations\FamiliaFamiliaRepository.cs" />
+    <Compile Include="DataAccess\Implementations\FamiliaPatenteRepository.cs" />
+    <Compile Include="DataAccess\Implementations\FamiliaRepository.cs" />
+    <Compile Include="DataAccess\Implementations\PatenteRepository.cs" />
+    <Compile Include="DataAccess\Implementations\UsuarioFamiliaRepository.cs" />
+    <Compile Include="DataAccess\Implementations\UsuarioPatenteRepository.cs" />
+    <Compile Include="DataAccess\Implementations\UsuarioRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IAdapter.cs" />
+    <Compile Include="DataAccess\Interfaces\IFamiliaRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IJoinRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IPatenteRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\IUsuarioRepository.cs" />
+    <Compile Include="DataAccess\Tools\SqlHelper.cs" />
     <Compile Include="DomainModel\Composite\Component.cs" />
     <Compile Include="DomainModel\Composite\Familia.cs" />
     <Compile Include="DomainModel\Composite\Patente.cs" />

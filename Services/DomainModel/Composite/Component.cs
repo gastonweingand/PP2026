@@ -23,7 +23,7 @@ namespace Composite {
 	/// </summary>
 	public abstract class Component {
 
-        public Guid IdComponente { get; set; }
+        protected Guid IdComponente { get; set; }
         public Component(){
 
 		}
