@@ -65,10 +65,15 @@
     <Compile Include="DomainModel\Composite\Patente.cs" />
     <Compile Include="DomainModel\Composite\Usuario.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
+    <Compile Include="Facade\FamiliaService.cs" />
     <Compile Include="Facade\IdiomaService.cs" />
     <Compile Include="Facade\LoginService.cs" />
+    <Compile Include="Facade\PatenteService.cs" />
+    <Compile Include="Facade\UsuarioService.cs" />
     <Compile Include="Logic\CustomExceptions\PalabraNoEncontradaException.cs" />
+    <Compile Include="Logic\FamiliaLogic.cs" />
     <Compile Include="Logic\IdiomaLogic.cs" />
+    <Compile Include="Logic\PatenteLogic.cs" />
     <Compile Include="Logic\UsuarioLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

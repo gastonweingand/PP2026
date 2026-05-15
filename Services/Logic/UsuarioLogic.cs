@@ -45,12 +45,12 @@ namespace Services.Logic
 
         public static void AgregarFamilia(Familia familia, Usuario usuario)
         {
-            new UsuarioFamiliaRepository().Agregar(familia, usuario);
+            new UsuarioFamiliaRepository().Add(familia, usuario);
         }
 
         public static void AgregarPatente(Patente patente, Usuario usuario)
         {
-            new UsuarioPatenteRepository().Agregar(patente, usuario);
+            new UsuarioPatenteRepository().Add(patente, usuario);
         }
     }
 }

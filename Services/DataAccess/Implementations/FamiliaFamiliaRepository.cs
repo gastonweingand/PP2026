@@ -14,12 +14,12 @@ namespace Services.Dal.Implementations
 {
     internal class FamiliaFamiliaRepository : IJoinRepository<Familia, Familia>
     {
-        public void Agregar(Familia hijo, Familia padre)
+        public void Add(Familia hijo, Familia padre)
         {
             SqlHelper.ExecuteNonQuery("INSERT INTO FamiliaFamilia (IdFamiliaPadre, IdFamiliaHijo) VALUES (@IdFamiliaPadre, @IdFamiliaHijo)",
                 CommandType.Text,
-                new SqlParameter("@IdFamiliaPadre", padre.IdFamilia),
-                new SqlParameter("@IdFamiliaHijo", hijo.IdFamilia));
+                new SqlParameter("@IdFamiliaPadre", padre.Id),
+                new SqlParameter("@IdFamiliaHijo", hijo.Id));
         }
 
         public List<Familia> GetByObject(Familia obj)

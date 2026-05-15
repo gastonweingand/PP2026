@@ -16,12 +16,12 @@ namespace Services.Logic
 
         public static void AgregarPatente(Patente patente, Familia familia)
         {
-            new FamiliaPatenteRepository().Agregar(patente, familia);
+            new FamiliaPatenteRepository().Add(patente, familia);
         }
 
         public static void AgregarFamilia(Familia hijo, Familia padre)
         {
-            new FamiliaFamiliaRepository().Agregar(hijo, padre);
+            new FamiliaFamiliaRepository().Add(hijo, padre);
         }
 
         public static Familia GetById(Guid id)
