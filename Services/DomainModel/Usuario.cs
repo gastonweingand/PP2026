@@ -13,8 +13,9 @@ namespace Services.DomainModel
         public string IdiomaPredeterminado { get; set; }
 
         public string Nombre { get; set; }
-
-        //Agregar los dato fundamentales para cualquier usuario: nombre, contraseña, email, etc.
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public bool Habilitado { get; set; }
 
         public List<Component> Privilegios { get; set; } = new List<Component>();
 

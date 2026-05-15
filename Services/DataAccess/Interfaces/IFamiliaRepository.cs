@@ -7,5 +7,6 @@ namespace Services.DataAccess.Implementations
     internal interface IFamiliaRepository
     {
         Familia GetById(Guid id);
+        void Agregar(Familia familia);
     }
 }

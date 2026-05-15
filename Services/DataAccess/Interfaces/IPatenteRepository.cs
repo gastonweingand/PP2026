@@ -10,5 +10,6 @@ namespace Services.DataAccess.Interfaces
     internal interface IPatenteRepository
     {
         Patente GetById(Guid id);
+        void Agregar(Patente patente);
     }
 }

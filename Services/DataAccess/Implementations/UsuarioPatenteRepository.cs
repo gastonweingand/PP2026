@@ -14,6 +14,14 @@ namespace Services.Dal.Implementations
 {
     internal class UsuarioPatenteRepository : IJoinRepository<Patente, Usuario>
     {
+        public void Agregar(Patente patente, Usuario usuario)
+        {
+            SqlHelper.ExecuteNonQuery("INSERT INTO UsuarioPatente (IdUsuario, IdPatente) VALUES (@IdUsuario, @IdPatente)",
+                CommandType.Text,
+                new SqlParameter("@IdUsuario", usuario.IdUsuario),
+                new SqlParameter("@IdPatente", patente.IdPatente));
+        }
+
         public List<Patente> GetByObject(Usuario obj)
         {
             List<Patente> patentes = new List<Patente>();

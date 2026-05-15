@@ -9,5 +9,6 @@ namespace Services.DataAccess.Interfaces
     internal interface IJoinRepository <T, Y>
     {
         List<T> GetByObject(Y obj);
+        void Agregar(T obj, Y parent);
     }
 }

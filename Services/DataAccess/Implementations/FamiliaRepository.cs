@@ -16,6 +16,15 @@ namespace Services.Dal.Implementations
 {
     internal class FamiliaRepository : IFamiliaRepository
     {
+        public void Agregar(Familia familia)
+        {
+            familia.IdFamilia = Guid.NewGuid();
+            string commandText = "INSERT INTO Familia (IdFamilia, Nombre) VALUES (@IdFamilia, @Nombre)";
+            SqlHelper.ExecuteNonQuery(commandText, CommandType.Text,
+                new SqlParameter("@IdFamilia", familia.IdFamilia),
+                new SqlParameter("@Nombre", familia.Nombre));
+        }
+
         public Familia GetById(Guid id)
         {
             string SelectByIdStatement = "SELECT IdFamilia, Nombre FROM [dbo].[Familia] WHERE IdFamilia = @IdFamilia";

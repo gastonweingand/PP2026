@@ -15,6 +15,16 @@ namespace Services.Dal.Implementations
 {
     internal class PatenteRepository : IPatenteRepository
     {
+        public void Agregar(Patente patente)
+        {
+            patente.IdPatente = Guid.NewGuid();
+            string commandText = "INSERT INTO Patente (IdPatente, DataKey, TipoAcceso) VALUES (@IdPatente, @DataKey, @TipoAcceso)";
+            SqlHelper.ExecuteNonQuery(commandText, CommandType.Text,
+                new SqlParameter("@IdPatente", patente.IdPatente),
+                new SqlParameter("@DataKey", patente.Nombre),
+                new SqlParameter("@TipoAcceso", patente.Descripcion ?? string.Empty));
+        }
+
         public Patente GetById(Guid id)
         {
             string SelectByIdStatement = "SELECT IdPatente, DataKey, TipoAcceso FROM [dbo].[Patente] WHERE IdPatente = @IdPatente";

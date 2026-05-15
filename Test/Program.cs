@@ -2,6 +2,7 @@
 using DataAccess.Factory;
 using DomainModel;
 using Services.DomainModel;
+using Services.Facade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -76,6 +77,77 @@ namespace Test
             {
                 Console.WriteLine(familia.Nombre);
             }
+
+            //Demo composite hacia la base de datos
+            Console.WriteLine("\n=== DEMO COMPOSITE CON BASE DE DATOS ===\n");
+
+            // 1. Crear patentes (hojas del árbol de permisos)
+            Patente patenteVentas = new Patente { Nombre = "frmVentas", Descripcion = "Gestión de ventas" };
+            Patente patenteVisVentas = new Patente { Nombre = "frmVisualizacionVentas", Descripcion = "Visualización de ventas" };
+            Patente patentePerfil = new Patente { Nombre = "frmPerfil", Descripcion = "Perfil de usuario" };
+
+            PatenteService.Agregar(patenteVentas);
+            PatenteService.Agregar(patenteVisVentas);
+            PatenteService.Agregar(patentePerfil);
+            Console.WriteLine($"Patentes creadas: {patenteVentas.Nombre}, {patenteVisVentas.Nombre}, {patentePerfil.Nombre}");
+
+            // 2. Crear familias (nodos del árbol)
+            Familia familiaVentas = new Familia { Nombre = "Familia de ventas" };
+            Familia familiaAdmin = new Familia { Nombre = "Administrador" };
+
+            FamiliaService.Agregar(familiaVentas);
+            FamiliaService.Agregar(familiaAdmin);
+            Console.WriteLine($"Familias creadas: {familiaVentas.Nombre}, {familiaAdmin.Nombre}");
+
+            // 3. Asignar patentes a la familia de ventas
+            FamiliaService.AgregarPatente(patenteVentas, familiaVentas);
+            FamiliaService.AgregarPatente(patenteVisVentas, familiaVentas);
+            Console.WriteLine($"Patentes asignadas a '{familiaVentas.Nombre}'");
+
+            // 4. Asignar la familia de ventas como hija de administrador
+            FamiliaService.AgregarFamilia(familiaVentas, familiaAdmin);
+            Console.WriteLine($"'{familiaVentas.Nombre}' asignada como hija de '{familiaAdmin.Nombre}'");
+
+            // 5. Crear usuario
+            Usuario usuarioBD = new Usuario
+            {
+                Nombre = "jorgito_bd",
+                Password = "Pass1234",
+                Email = "jorgito@empresa.com",
+                Habilitado = true
+            };
+            UsuarioService.RegistrarUsuario(usuarioBD);
+            Console.WriteLine($"Usuario creado: {usuarioBD.Nombre} (Id: {usuarioBD.IdUsuario})");
+
+            // 6. Asignar privilegios al usuario
+            UsuarioService.AgregarFamilia(familiaAdmin, usuarioBD);   // accede a todo el árbol de admin
+            UsuarioService.AgregarPatente(patentePerfil, usuarioBD);   // patente directa (sin familia)
+            Console.WriteLine("Privilegios asignados al usuario");
+
+            // 7. Recuperar el usuario desde la base de datos e hidratar el composite completo
+            Console.WriteLine("\n--- Recuperando usuario desde la BD ---");
+            Usuario usuarioRecuperado = UsuarioService.GetByCredentials("jorgito_bd", "Pass1234");
+
+            if (usuarioRecuperado != null)
+            {
+                Console.WriteLine($"Usuario: {usuarioRecuperado.Nombre} | Email: {usuarioRecuperado.Email}");
+
+                // Todas las patentes (recursivo por todo el árbol)
+                Console.WriteLine("\nTodas las patentes accesibles:");
+                foreach (Patente p in usuarioRecuperado.TodasPatentes())
+                    Console.WriteLine($"  - {p.Nombre}: {p.Descripcion}");
+
+                // Todas las familias (recursivo)
+                Console.WriteLine("\nTodas las familias accesibles:");
+                foreach (Familia f in usuarioRecuperado.TodasFamilias())
+                    Console.WriteLine($"  - {f.Nombre}");
+            }
+            else
+            {
+                Console.WriteLine("No se encontró el usuario.");
+            }
+
+            Console.WriteLine("\n=== FIN DEMO BD ===\n");
 
             //Por ahora vamos a probar nuestro DAO, después iremos a la capa lógica
 

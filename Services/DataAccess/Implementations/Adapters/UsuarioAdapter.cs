@@ -41,18 +41,14 @@ namespace Services.Dal.Implementations.Adapters
         public Usuario Get(object[] values)
         {
             Usuario usuario = new Usuario();
-            //(
-            //    Guid.Parse(values[0].ToString()),
-            //    values[1].ToString(),
-            //    values[2].ToString(),
-            //    values[3].ToString(),
-            //    Convert.ToBoolean(values[4].ToString())
-            //);
+            usuario.IdUsuario = Guid.Parse(values[0].ToString());
+            usuario.Nombre = values[1].ToString();
+            usuario.Password = values[2].ToString();
+            usuario.Email = values[3].ToString();
+            usuario.Habilitado = Convert.ToBoolean(values[4]);
 
             usuario.Privilegios = new List<Component>();
-
             usuario.Privilegios.AddRange(new UsuarioFamiliaRepository().GetByObject(usuario));
-
             usuario.Privilegios.AddRange(new UsuarioPatenteRepository().GetByObject(usuario));
 
             return usuario;
