@@ -1,5 +1,4 @@
-﻿using Composite;
-using Services.DomainModel;
+﻿using Services.DataAccess.DomainModel.Composite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +28,7 @@ namespace WinApp
             foreach (ToolStripItem item in menuStrip.Items)
             {
                 //Acá tenemos todos los items del menú
-                if(usuario.TodasPatentes().Exists(o => o.Nombre == item.Name))
+                if(usuario.Patentes.Exists(o => o.Nombre == item.Name))
                 {
                     item.Visible = true;
                 }

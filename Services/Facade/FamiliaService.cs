@@ -1,13 +1,13 @@
-using Composite;
+using Services.DataAccess.DomainModel.Composite;
 using System;
 
 namespace Services.Facade
 {
     public static class FamiliaService
     {
-        public static void Agregar(Familia familia)
+        public static void Add(Familia familia)
         {
-            Logic.FamiliaLogic.Agregar(familia);
+            Logic.FamiliaLogic.Add(familia);
         }
 
         public static void AgregarPatente(Patente patente, Familia familia)

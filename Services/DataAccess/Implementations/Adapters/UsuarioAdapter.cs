@@ -1,7 +1,6 @@
-﻿
-using Composite;
+
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +10,6 @@ using System.Threading.Tasks;
 
 namespace Services.Dal.Implementations.Adapters
 {
-    /// <summary>
-    /// 
-    /// </summary>
     internal class UsuarioAdapter : IAdapter<Usuario>
     {
         #region Singleton
@@ -29,23 +25,20 @@ namespace Services.Dal.Implementations.Adapters
 
         private UsuarioAdapter()
         {
-            //Implent here the initialization of your singleton
         }
 
         #endregion
-        /// <summary>
-        /// Obtener un objeto Usuario a partir de un array de objetos
-        /// </summary>
-        /// <param name="values"></param>
-        /// <returns></returns>
+
         public Usuario Get(object[] values)
         {
-            Usuario usuario = new Usuario();
-            usuario.IdUsuario = Guid.Parse(values[0].ToString());
-            usuario.Nombre = values[1].ToString();
-            usuario.Password = values[2].ToString();
-            usuario.Email = values[3].ToString();
-            usuario.Habilitado = Convert.ToBoolean(values[4]);
+            Usuario usuario = new Usuario
+            (
+                Guid.Parse(values[0].ToString()),
+                values[1].ToString(),
+                values[2].ToString(),
+                values[3].ToString(),
+                Convert.ToBoolean(values[4].ToString())
+            );
 
             usuario.Privilegios = new List<Component>();
             usuario.Privilegios.AddRange(new UsuarioFamiliaRepository().GetByObject(usuario));

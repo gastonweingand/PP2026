@@ -1,6 +1,6 @@
-using Composite;
 using Services.Dal.Implementations;
-using Services.DataAccess.Implementations;
+using Services.DataAccess.DomainModel.Composite;
+using Services.DataAccess.Interfaces;
 using System;
 
 namespace Services.Logic
@@ -9,9 +9,9 @@ namespace Services.Logic
     {
         private static readonly IFamiliaRepository _repo = new FamiliaRepository();
 
-        public static void Agregar(Familia familia)
+        public static void Add(Familia familia)
         {
-            _repo.Agregar(familia);
+            _repo.Add(familia);
         }
 
         public static void AgregarPatente(Patente patente, Familia familia)

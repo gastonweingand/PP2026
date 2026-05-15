@@ -1,6 +1,5 @@
-﻿using Composite;
+﻿using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,11 +29,10 @@ namespace Services.Dal.Implementations.Adapters
         #endregion
         public Patente Get(object[] values)
         {
-            //Hidratación de nivel 1, simplemente hidratamos primitivos, no objetos relacionados
             Patente patente = new Patente();
-            patente.IdPatente = Guid.Parse(values[0].ToString());
-            patente.Nombre = values[1].ToString();
-            patente.Descripcion = values[2].ToString();
+            patente.Id = Guid.Parse(values[0].ToString());
+            patente.DataKey = values[1].ToString();
+            patente.TipoAcceso = (TipoAcceso)Enum.Parse(typeof(TipoAcceso), values[2].ToString());
             return patente;
         }
     }

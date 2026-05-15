@@ -1,7 +1,7 @@
-﻿using Composite;
+﻿
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data;

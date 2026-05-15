@@ -1,8 +1,7 @@
 ﻿
-using Composite;
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -29,7 +28,7 @@ namespace Services.Dal.Implementations
 
             using (SqlDataReader dataReader = SqlHelper.ExecuteReader("SELECT IdFamiliaHijo FROM FamiliaFamilia WHERE IdFamiliaPadre = @IdFamiliaPadre",
                 CommandType.Text,
-                new SqlParameter("@IdFamiliaPadre", obj.IdFamilia)))
+                new SqlParameter("@IdFamiliaPadre", obj.Id)))
             {
                 while (dataReader.Read())
                 {

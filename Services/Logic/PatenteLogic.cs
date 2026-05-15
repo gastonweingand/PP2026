@@ -1,5 +1,5 @@
-using Composite;
 using Services.Dal.Implementations;
+using Services.DataAccess.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using System;
 
@@ -9,9 +9,9 @@ namespace Services.Logic
     {
         private static readonly IPatenteRepository _repo = new PatenteRepository();
 
-        public static void Agregar(Patente patente)
+        public static void Add(Patente patente)
         {
-            _repo.Agregar(patente);
+            _repo.Add(patente);
         }
 
         public static Patente GetById(Guid id)

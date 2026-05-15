@@ -1,28 +1,33 @@
-﻿using Composite;
-using Dal.Tools;
 using Services.Dal.Implementations.Adapters;
-using Services.DataAccess.Implementations;
+using Services.DataAccess.DomainModel.Composite;
+using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
-using Services.DomainModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services.Dal.Implementations
 {
     internal class FamiliaRepository : IFamiliaRepository
     {
-        public void Agregar(Familia familia)
+        public void Add(Familia entity)
         {
-            familia.IdFamilia = Guid.NewGuid();
+            entity.Id = Guid.NewGuid();
             string commandText = "INSERT INTO Familia (IdFamilia, Nombre) VALUES (@IdFamilia, @Nombre)";
             SqlHelper.ExecuteNonQuery(commandText, CommandType.Text,
-                new SqlParameter("@IdFamilia", familia.IdFamilia),
-                new SqlParameter("@Nombre", familia.Nombre));
+                new SqlParameter("@IdFamilia", entity.Id),
+                new SqlParameter("@Nombre", entity.Nombre));
+        }
+
+        public void Delete(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Familia> GetAll()
+        {
+            throw new NotImplementedException();
         }
 
         public Familia GetById(Guid id)
@@ -40,9 +45,14 @@ namespace Services.Dal.Implementations
                 }
                 else
                 {
-                    return null; // or throw an exception if not found
+                    return null;
                 }
             }
+        }
+
+        public void Update(Familia entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

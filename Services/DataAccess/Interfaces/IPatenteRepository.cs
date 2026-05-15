@@ -1,15 +1,9 @@
-﻿using Composite;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccess.Interfaces;
+using Services.DataAccess.DomainModel.Composite;
 
 namespace Services.DataAccess.Interfaces
 {
-    internal interface IPatenteRepository
+    internal interface IPatenteRepository : IGenericRepository<Patente>
     {
-        Patente GetById(Guid id);
-        void Agregar(Patente patente);
     }
 }

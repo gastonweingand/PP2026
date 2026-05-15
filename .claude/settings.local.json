@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"D:\\\\Facultad\\\\Prácticas 2026\\\\Repo\\\\PP2026\\\\.claude\\\\worktrees\\\\friendly-galileo-41046d\" -Directory)",
+      "Bash(Select-Object -ExpandProperty Name)",
+      "Bash(git -C \"D:\\\\Facultad\\\\Prácticas 2026\\\\Repo\\\\PP2026\\\\.claude\\\\worktrees\\\\friendly-galileo-41046d\" add Services/DataAccess/Implementations/Adapters/UsuarioAdapter.cs Services/DataAccess/Implementations/FamiliaFamiliaRepository.cs Services/DataAccess/Implementations/FamiliaPatenteRepository.cs Services/DataAccess/Implementations/FamiliaRepository.cs Services/DataAccess/Implementations/PatenteRepository.cs Services/DataAccess/Implementations/UsuarioFamiliaRepository.cs Services/DataAccess/Implementations/UsuarioPatenteRepository.cs Services/DataAccess/Interfaces/IFamiliaRepository.cs Services/DataAccess/Interfaces/IJoinRepository.cs Services/DataAccess/Interfaces/IPatenteRepository.cs Services/DomainModel/Usuario.cs Test/Program.cs Services/Facade/FamiliaService.cs Services/Facade/PatenteService.cs Services/Facade/UsuarioService.cs Services/Logic/FamiliaLogic.cs Services/Logic/PatenteLogic.cs Services/Logic/UsuarioLogic.cs)",
+      "Bash(git -C \"D:\\\\Facultad\\\\Prácticas 2026\\\\Repo\\\\PP2026\\\\.claude\\\\worktrees\\\\friendly-galileo-41046d\" log --oneline master..HEAD)",
+      "Bash(git -C \"D:\\\\Facultad\\\\Prácticas 2026\\\\Repo\\\\PP2026\\\\.claude\\\\worktrees\\\\friendly-galileo-41046d\" log --oneline HEAD..master)"
+    ]
+  }
+}

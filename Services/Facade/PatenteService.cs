@@ -1,13 +1,13 @@
-using Composite;
+using Services.DataAccess.DomainModel.Composite;
 using System;
 
 namespace Services.Facade
 {
     public static class PatenteService
     {
-        public static void Agregar(Patente patente)
+        public static void Add(Patente patente)
         {
-            Logic.PatenteLogic.Agregar(patente);
+            Logic.PatenteLogic.Add(patente);
         }
 
         public static Patente GetById(Guid id)
