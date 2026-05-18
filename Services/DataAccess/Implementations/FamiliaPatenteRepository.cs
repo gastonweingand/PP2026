@@ -20,6 +20,20 @@ namespace Services.Dal.Implementations
                 CommandType.Text,
                 new SqlParameter("@IdFamilia", familia.Id),
                 new SqlParameter("@IdPatente", patente.Id));
+            
+            //Si tuviesemos más data en la entidad de la relación, necesitamos un tipo más (Z)
+            //Precio unitario
+            //Cantidad 
+        }
+
+        public void AddRange(List<Patente> children, Familia parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Patente obj)
+        {
+            throw new NotImplementedException();
         }
 
         public List<Patente> GetByObject(Familia obj)

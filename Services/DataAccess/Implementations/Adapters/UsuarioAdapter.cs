@@ -40,7 +40,6 @@ namespace Services.Dal.Implementations.Adapters
                 Convert.ToBoolean(values[4].ToString())
             );
 
-            usuario.Privilegios = new List<Component>();
             usuario.Privilegios.AddRange(new UsuarioFamiliaRepository().GetByObject(usuario));
             usuario.Privilegios.AddRange(new UsuarioPatenteRepository().GetByObject(usuario));
 

@@ -31,8 +31,11 @@ namespace Services.Dal.Implementations.Adapters
         public Familia Get(object[] values)
         {
             Familia familia = new Familia();
+            //Hidratación de los datos primitivos del objeto
             familia.Id = Guid.Parse(values[0].ToString());
             familia.Nombre = values[1].ToString();
+
+            //Hidratación de los objetos hijos
 
             familia.AddRange(new FamiliaFamiliaRepository().GetByObject(familia));
 

@@ -22,6 +22,16 @@ namespace Services.Dal.Implementations
                 new SqlParameter("@IdPatente", patente.Id));
         }
 
+        public void AddRange(List<Patente> children, Usuario parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Patente obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Patente> GetByObject(Usuario obj)
         {
             List<Patente> patentes = new List<Patente>();

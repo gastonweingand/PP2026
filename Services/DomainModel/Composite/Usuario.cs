@@ -21,7 +21,7 @@ namespace Services.DataAccess.DomainModel.Composite
         /// Para gestionar el patrón composite debemos utilizar una lista de Component
         /// </summary>
         ///
-        public List<Component> Privilegios { get; set; }
+        public List<Component> Privilegios { get; set; } = new List<Component>();
 
         /// <summary>
         /// Generar recursividad sobre el composite para obtener el menú de opciones

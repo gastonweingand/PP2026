@@ -26,6 +26,7 @@ namespace Test
             PatenteService.Add(patenteVentas);
             PatenteService.Add(patenteVisVentas);
             PatenteService.Add(patentePerfil);
+
             Console.WriteLine($"Patentes creadas: {patenteVentas.DataKey}, {patenteVisVentas.DataKey}, {patentePerfil.DataKey}");
 
             //2.Crear familias (nodos del árbol)

@@ -22,6 +22,16 @@ namespace Services.Dal.Implementations
                 new SqlParameter("@IdFamiliaHijo", hijo.Id));
         }
 
+        public void AddRange(List<Familia> children, Familia parent)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Familia obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<Familia> GetByObject(Familia obj)
         {
             List<Familia> familias = new List<Familia>();
