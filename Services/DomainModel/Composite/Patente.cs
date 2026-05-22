@@ -13,7 +13,7 @@ using System.IO;
 
 
 
-namespace Services.DataAccess.DomainModel.Composite
+namespace Services.DomainModel.Composite
 {
 	/// <summary>
 	/// This class (a) represents leaf objects in the composition, and (b) defines

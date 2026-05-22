@@ -13,7 +13,7 @@ using System.IO;
 
 
 
-namespace Services.DataAccess.DomainModel.Composite
+namespace Services.DomainModel.Composite
 {
 	/// <summary>
 	/// This class (a) defines behaviour for components having children, (b) stores

@@ -49,6 +49,7 @@
     <Compile Include="DataAccess\Implementations\FamiliaFamiliaRepository.cs" />
     <Compile Include="DataAccess\Implementations\FamiliaPatenteRepository.cs" />
     <Compile Include="DataAccess\Implementations\FamiliaRepository.cs" />
+    <Compile Include="DataAccess\Implementations\FileLoggerRepository.cs" />
     <Compile Include="DataAccess\Implementations\PatenteRepository.cs" />
     <Compile Include="DataAccess\Implementations\UsuarioFamiliaRepository.cs" />
     <Compile Include="DataAccess\Implementations\UsuarioPatenteRepository.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="DataAccess\Interfaces\IFamiliaRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IGenericRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IJoinRepository.cs" />
+    <Compile Include="DataAccess\Interfaces\ILogger.cs" />
     <Compile Include="DataAccess\Interfaces\IPatenteRepository.cs" />
     <Compile Include="DataAccess\Interfaces\IUsuarioRepository.cs" />
     <Compile Include="DataAccess\Tools\SqlHelper.cs" />
@@ -64,14 +66,18 @@
     <Compile Include="DomainModel\Composite\Familia.cs" />
     <Compile Include="DomainModel\Composite\Patente.cs" />
     <Compile Include="DomainModel\Composite\Usuario.cs" />
+    <Compile Include="DomainModel\LogEntry.cs" />
+    <Compile Include="DomainModel\LogLevel.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
     <Compile Include="Facade\FamiliaService.cs" />
     <Compile Include="Facade\IdiomaService.cs" />
+    <Compile Include="Facade\LoggerService.cs" />
     <Compile Include="Facade\LoginService.cs" />
     <Compile Include="Facade\PatenteService.cs" />
     <Compile Include="Facade\UsuarioService.cs" />
     <Compile Include="Logic\CustomExceptions\PalabraNoEncontradaException.cs" />
     <Compile Include="Logic\FamiliaLogic.cs" />
+    <Compile Include="Logic\FileLogger.cs" />
     <Compile Include="Logic\IdiomaLogic.cs" />
     <Compile Include="Logic\PatenteLogic.cs" />
     <Compile Include="Logic\UsuarioLogic.cs" />

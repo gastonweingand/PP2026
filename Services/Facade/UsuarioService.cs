@@ -1,4 +1,4 @@
-using Services.DataAccess.DomainModel.Composite;
+using Services.DomainModel.Composite;
 
 namespace Services.Facade
 {

@@ -1,4 +1,4 @@
-﻿using Services.DataAccess.DomainModel.Composite;
+﻿using Services.DomainModel.Composite;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

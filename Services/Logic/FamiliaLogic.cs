@@ -1,5 +1,5 @@
 using Services.Dal.Implementations;
-using Services.DataAccess.DomainModel.Composite;
+using Services.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using System;
 

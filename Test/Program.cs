@@ -1,6 +1,6 @@
 using DataAccess.Factory;
 using DomainModel;
-using Services.DataAccess.DomainModel.Composite;
+using Services.DomainModel.Composite;
 using Services.Facade;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,59 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            LoggerService.Info("Iniciando aplicación de prueba");
+            LoggerService.Debug("Esto es un mensaje de depuración");
+            LoggerService.Warn("Esto es una advertencia");
+            bool fatal = true;
+
+            try
+            {
+                int a = 0; int b=40;
+                int total = b / a; // Esto va a tirar una excepción de división por cero
+            }
+            catch (Exception ex)
+            {
+                LoggerService.Error("Ocurrió un error inesperado", ex);
+            }
+
+            if (fatal)
+            {
+                LoggerService.Fatal("Ocurrió un error fatal que requiere atención inmediata");
+                return;
+            }
+
+
+
+            //Concatenar 1.000.000 cadenas "pepe" con concatenación de strings y calcular el tiempo que tarda
+            //string resultado = "";
+            //DateTime inicio = DateTime.Now;
+
+            //string pepe = "pepe";
+            //string salida = string.Empty;
+
+            //for (int i = 0; i < 70000; i++)
+            //{
+            //    salida += pepe;
+            //}
+
+            //DateTime outicio = DateTime.Now;
+            //Console.WriteLine($"Tiempo de ejecución: {outicio - inicio}");
+
+            //Hace lo mismo pero con StringBuilder
+            StringBuilder stringBuilder = new StringBuilder();
+            DateTime inicio = DateTime.Now;
+
+            string pepe = "pepe";
+
+            for (int i = 0; i < 100000000; i++)
+            {
+                stringBuilder.Append(pepe);
+            }
+
+            DateTime outicioSB = DateTime.Now;
+            Console.WriteLine($"Tiempo de ejecución con StringBuilder: {outicioSB - inicio}");
+
+
             //Demo composite hacia la base de datos
             Console.WriteLine("DEMO COMPOSITE CON BASE DE DATOS");
 

@@ -1,6 +1,6 @@
 ﻿using Services.Dal.Implementations.Adapters;
 using Services.DataAccess;
-using Services.DataAccess.DomainModel.Composite;
+using Services.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using Services.DataAccess.Tools;
 using System;

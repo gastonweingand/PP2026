@@ -1,5 +1,5 @@
 using DataAccess.Interfaces;
-using Services.DataAccess.DomainModel.Composite;
+using Services.DomainModel.Composite;
 using System;
 
 namespace Services.DataAccess.Interfaces

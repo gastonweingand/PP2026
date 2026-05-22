@@ -13,7 +13,7 @@ using System.IO;
 
 
 
-namespace Services.DataAccess.DomainModel.Composite { 
+namespace Services.DomainModel.Composite { 
     /// <summary>
     /// This class (a) declares the interface for objects in the composition, (b)
     /// implements default behaviour for the interface common to all classes, as

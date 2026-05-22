@@ -1,5 +1,5 @@
 ﻿
-using Services.DataAccess.DomainModel.Composite;
+using Services.DomainModel.Composite;
 using Services.DataAccess.Interfaces;
 using System;
 using System.Collections.Generic;

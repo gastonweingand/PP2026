@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.DataAccess.DomainModel.Composite
+namespace Services.DomainModel.Composite
 {
     public class Usuario
     {
