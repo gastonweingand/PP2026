@@ -6,29 +6,52 @@ using System.Threading.Tasks;
 
 namespace Services.DomainModel
 {
-    internal class LogEntry
+    public class LogEntry
     {
         public DateTime TimeStamp { get; set; }
-
         public LogLevel LogLevel { get; set; }
-
-        public string Message  { get; set; }
-
+        public string Message { get; set; }
         public Exception Exception { get; set; }
+        public string MethodName { get; set; }
+        public string ClassName { get; set; }
+        public object[] Arguments { get; set; }
 
         public override string ToString()
         {
-            //Generamos formato del mensaje de log, por ejemplo: [2024-06-01 14:30:00] [Error] Ocurrió un error al procesar la solicitud. Detalles: System.NullReferenceException: Object reference not set to an instance of an object.
             StringBuilder sb = new StringBuilder();
-            sb.Append($"[{TimeStamp:yyyy-MM-dd HH:mm:ss}] ");
-            sb.Append($"[{LogLevel}] ");
-            sb.Append($"{Message}");
+            sb.AppendLine($"[{TimeStamp:yyyy-MM-dd HH:mm:ss}] [{LogLevel}]");
+
+            if (!string.IsNullOrEmpty(ClassName) && !string.IsNullOrEmpty(MethodName))
+            {
+                sb.AppendLine($"Method: {ClassName}.{MethodName}");
+            }
+
+            sb.AppendLine($"Message: {Message}");
 
             if (Exception != null)
             {
-                sb.Append($" Detalles: {Exception.Message}");
-                sb.Append($" StackTrace: {Exception.StackTrace}");
+                sb.AppendLine($"Exception Type: {Exception.GetType().Name}");
+                sb.AppendLine($"Exception Message: {Exception.Message}");
+
+                if (Arguments != null && Arguments.Length > 0)
+                {
+                    sb.AppendLine("Arguments:");
+                    for (int i = 0; i < Arguments.Length; i++)
+                    {
+                        sb.AppendLine($"  [{i}]: {Arguments[i] ?? "null"}");
+                    }
+                }
+
+                if (Exception.InnerException != null)
+                {
+                    sb.AppendLine($"InnerException: {Exception.InnerException.Message}");
+                    sb.AppendLine($"InnerException StackTrace: {Exception.InnerException.StackTrace}");
+                }
+
+                sb.AppendLine($"StackTrace: {Exception.StackTrace}");
             }
+
+            sb.AppendLine(new string('-', 80));
 
             return sb.ToString();
         }

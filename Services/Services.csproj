@@ -66,6 +66,11 @@
     <Compile Include="DomainModel\Composite\Familia.cs" />
     <Compile Include="DomainModel\Composite\Patente.cs" />
     <Compile Include="DomainModel\Composite\Usuario.cs" />
+    <Compile Include="DomainModel\Exceptions\Base\ApplicationException.cs" />
+    <Compile Include="DomainModel\Exceptions\Base\BusinessRuleException.cs" />
+    <Compile Include="DomainModel\Exceptions\DataAccess\ConcurrencyException.cs" />
+    <Compile Include="DomainModel\Exceptions\DataAccess\DataAccessException.cs" />
+    <Compile Include="DomainModel\Exceptions\DataAccess\RecordNotFoundException.cs" />
     <Compile Include="DomainModel\LogEntry.cs" />
     <Compile Include="DomainModel\LogLevel.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
@@ -79,6 +84,8 @@
     <Compile Include="Logic\FamiliaLogic.cs" />
     <Compile Include="Logic\FileLogger.cs" />
     <Compile Include="Logic\IdiomaLogic.cs" />
+    <Compile Include="Logic\Infraestructure\ExceptionManagement\ExceptionContext.cs" />
+    <Compile Include="Logic\Infraestructure\ExceptionManagement\ExceptionLogger.cs" />
     <Compile Include="Logic\PatenteLogic.cs" />
     <Compile Include="Logic\UsuarioLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

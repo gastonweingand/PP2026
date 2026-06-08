@@ -15,6 +15,34 @@ namespace Test
     {
         static void Main(string[] args)
         {
+            Usuario usuarioBD = default;
+            try
+            {
+                usuarioBD = new Usuario("jorgito_bd", "jorgito@empresa.com", "Pass1234");
+                usuarioBD.IdUsuario = Guid.Empty; // Forzamos un error para probar la gestión de excepciones
+                LoginService.RegistrarUsuario(usuarioBD);
+            }
+            catch (ArgumentNullException argEx)
+            {
+                //Ejemplo de gestión de exception de negocio...
+                Console.WriteLine(argEx.Message);
+
+                /*ExceptionLogger.Log(new ExceptionContext
+                {
+                    Exception = argEx,
+                    MethodName = nameof(LoginService.RegistrarUsuario),
+                    ClassName = nameof(Program),
+                    LogLevel = LogLevel.Warn,
+                    Arguments = new object[] { "usuarioBD" }
+                });*/
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+
             LoggerService.Info("Iniciando aplicación de prueba");
             LoggerService.Debug("Esto es un mensaje de depuración");
             LoggerService.Warn("Esto es una advertencia");
@@ -100,7 +128,7 @@ namespace Test
             Console.WriteLine($"'{familiaVentasBD.Nombre}' asignada como hija de '{familiaAdminBD.Nombre}'");
 
             //5.Crear usuario
-            Usuario usuarioBD = new Usuario("jorgito_bd", "jorgito@empresa.com", "Pass1234");
+            usuarioBD = new Usuario("jorgito_bd", "jorgito@empresa.com", "Pass1234");
             LoginService.RegistrarUsuario(usuarioBD);
             Console.WriteLine($"Usuario creado: {usuarioBD.Nombre} (Id: {usuarioBD.IdUsuario})");
 

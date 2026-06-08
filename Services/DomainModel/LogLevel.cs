@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Services.DomainModel
 {
-    internal enum LogLevel
+    public enum LogLevel
     {
         //Trace, Con motivos de paso a paso para ciertas circunstancias, no se utiliza en este proyecto
         Debug,
