@@ -68,11 +68,14 @@
     <Compile Include="DomainModel\Composite\Usuario.cs" />
     <Compile Include="DomainModel\Exceptions\Base\ApplicationException.cs" />
     <Compile Include="DomainModel\Exceptions\Base\BusinessRuleException.cs" />
+    <Compile Include="DomainModel\Exceptions\Base\UIException.cs" />
     <Compile Include="DomainModel\Exceptions\DataAccess\ConcurrencyException.cs" />
     <Compile Include="DomainModel\Exceptions\DataAccess\DataAccessException.cs" />
     <Compile Include="DomainModel\Exceptions\DataAccess\RecordNotFoundException.cs" />
     <Compile Include="DomainModel\LogEntry.cs" />
     <Compile Include="DomainModel\LogLevel.cs" />
+    <Compile Include="Facade\ExtensionsMethods\ExceptionHandler.cs" />
+    <Compile Include="Facade\ExtensionsMethods\ExceptionManager.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
     <Compile Include="Facade\FamiliaService.cs" />
     <Compile Include="Facade\IdiomaService.cs" />

@@ -13,5 +13,10 @@ namespace Services.Exceptions.DataAccess
             : base(message, innerException, code)
         {
         }
+
+        public DataAccessException(System.Exception innerException, string code = "DATA_ACCESS_ERROR")
+            : base(innerException.Message, innerException, code)
+        {
+        }
     }
 }

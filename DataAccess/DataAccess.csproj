@@ -61,6 +61,10 @@
       <Project>{aae870d7-2431-48f9-8665-a37407f968b5}</Project>
       <Name>DomainModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
+      <Project>{ac040cce-a42a-40ae-81cc-b22b9d4fb66b}</Project>
+      <Name>Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Implementaciones\MySql\" />

@@ -2,6 +2,8 @@
 using DataAccess.Interfaces;
 using DataAccess.Tools;
 using DomainModel;
+using Services.Exceptions.DataAccess;
+using Services.Facade.ExtensionsMethods;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -91,7 +93,9 @@ namespace DataAccess.Implementaciones.SqlServer
             }
             catch (Exception ex)
             {
-                throw ex;
+                //ex.Handle();
+
+                ExceptionManager.HandleException(new DataAccessException(ex));
             }
         }
 
