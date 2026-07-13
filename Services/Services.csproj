@@ -74,6 +74,7 @@
     <Compile Include="DomainModel\Exceptions\DataAccess\RecordNotFoundException.cs" />
     <Compile Include="DomainModel\LogEntry.cs" />
     <Compile Include="DomainModel\LogLevel.cs" />
+    <Compile Include="Facade\CryptographyService.cs" />
     <Compile Include="Facade\ExtensionsMethods\ExceptionHandler.cs" />
     <Compile Include="Facade\ExtensionsMethods\ExceptionManager.cs" />
     <Compile Include="Facade\ExtensionsMethods\StringExtension.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Logic\FamiliaLogic.cs" />
     <Compile Include="Logic\FileLogger.cs" />
     <Compile Include="Logic\IdiomaLogic.cs" />
+    <Compile Include="Logic\Infraestructure\CryptographyLogic.cs" />
     <Compile Include="Logic\Infraestructure\ExceptionManagement\ExceptionContext.cs" />
     <Compile Include="Logic\Infraestructure\ExceptionManagement\ExceptionLogger.cs" />
     <Compile Include="Logic\PatenteLogic.cs" />
